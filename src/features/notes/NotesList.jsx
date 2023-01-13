@@ -9,7 +9,11 @@ const NotesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery();
+  } = useGetNotesQuery(undefined, {
+    pollingInterval: 10000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
   if (isLoading) {
@@ -26,7 +30,7 @@ const NotesList = () => {
         <thead className="table__thead">
           <tr>
             <th scope="col" className="table__th note__status">
-              Username
+              Status
             </th>
             <th scope="col" className="table__th note__created">
               Created
